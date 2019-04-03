@@ -10,8 +10,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jfcote87/google-api-go-client/batch"
-	"github.com/jfcote87/google-api-go-client/batch/credentials"
+	"github.com/kball/google-api-go-client/batch"
+	"github.com/kball/google-api-go-client/batch/credentials"
 
 	cal "google.golang.org/api/calendar/v3"
 	gmail "google.golang.org/api/gmail/v1"

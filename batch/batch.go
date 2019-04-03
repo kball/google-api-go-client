@@ -159,6 +159,9 @@ type Service struct {
 	// if not nil, DoCtx() calls this during the request and response
 	// assigning the []byte variable to the request or response body.
 	DebugFunc func(string, []byte)
+	// if empty, defaults to baseURL = "https://www.googleapis.com/batch"
+	// Override to point to different batch urls
+	BaseURL string
 	// mu protectes the requests slice
 	mu           sync.Mutex
 	requests     []*Request
@@ -307,8 +310,15 @@ func (s *Service) DoCtx(ctx context.Context) ([]Response, error) {
 		s.DebugFunc("Request", outputBuf.Bytes())
 	}
 
+	var url string
+	if s.BaseURL != "" {
+		url = s.BaseURL
+	} else {
+		url = baseURL
+	}
+
 	// Create req to send batches
-	req, err := http.NewRequest("POST", baseURL, outputBuf)
+	req, err := http.NewRequest("POST", url, outputBuf)
 	if err != nil {
 		return nil, err
 	}

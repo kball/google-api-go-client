@@ -18,7 +18,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jfcote87/google-api-go-client/batch"
+	"github.com/kball/google-api-go-client/batch"
 
 	"io/ioutil"
 
